@@ -27,6 +27,11 @@ namespace RStudents.Tests
             _driver.Navigate().GoToUrl(Urls.StudentsPage);
             _wait.Until(d => d.Url == Urls.StudentsPage);
         }
-
+        public void GoToCreateStudentPage()
+        {
+            Console.WriteLine("Navigating to Create Student Page");
+            _driver.Navigate().GoToUrl(Urls.CreateStudentPage);
+            _wait.Until(d => d.Url == Urls.CreateStudentPage);
+        }
     }
 }

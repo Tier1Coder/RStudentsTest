@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
-using RStudentsTest;
 
 namespace RStudents.Tests
 {
@@ -21,7 +20,7 @@ namespace RStudents.Tests
                 Console.WriteLine("Starting GeckoDriver...");
 
                 // Ścieżka do GeckoDrivera
-                var service = FirefoxDriverService.CreateDefaultService(@"C:\Users\akasi\source\repos\RStudentsTesting\RStudentsTest\Drivers\geckodriver-v0.34.0-win32\geckodriver.exe");
+                var service = FirefoxDriverService.CreateDefaultService(@"C:\Users\akasi\source\repos\RStudentsTest\Drivers\geckodriver-v0.34.0-win32\geckodriver.exe");
 
                 // Opcje Firefoxa
                 var options = new FirefoxOptions();

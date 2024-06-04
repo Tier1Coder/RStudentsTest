@@ -7,5 +7,6 @@
         public const string StudentsPage = BaseUrl + "/students";
         public const string GroupsPage = BaseUrl + "/groups";
         public const string PrivacyPage = HomePage + "/privacy";
+        public const string CreateStudentPage = StudentsPage + "/create";
     }
 }
