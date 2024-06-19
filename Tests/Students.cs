@@ -1,4 +1,6 @@
-﻿namespace RStudents.Tests
+﻿using OpenQA.Selenium;
+
+namespace RStudents.Tests
 {
     [TestFixture]
     public class Students : WebDriverSetup
@@ -6,9 +8,9 @@
         string studentsListTitleId = "students-list-title";
         string newStudentButtonId = "new-student-button";
         string studentsTableId = "students-table";
-        string createStudentFirstNameId = "FirstName";
-        string createStudentLastNameId = "LastName";
-        string createStudentAgeId = "Age";
+        string createStudentFirstNameId = "first-name";
+        string createStudentLastNameId = "last-name";
+        string createStudentAgeId = "age";
         string createStudentSubmitButtonId = "submit-button";
         string deleteStudentButtonCSSSelector = "a[id^='delete-student-']";
 
@@ -46,13 +48,31 @@
             assertsHelper.SendKeys(createStudentAgeId, age);
             assertsHelper.Click(createStudentSubmitButtonId, SelectorType.Id);
 
-            Assert.That(assertsHelper.AreTextsDisplayedUnderElement(studentsTableId, new List<string>() { firstName, lastName, age }), Is.True, $"Student is added.");
+            // Ponowne zlokalizowanie elementu i oczekiwanie na jego załadowanie
+            Assert.That(() => assertsHelper.AreTextsDisplayedUnderElement(studentsTableId, new List<string>() { firstName, lastName, age }), Is.True.After(10).Seconds.PollEvery(1), $"Student is added.");
 
-            assertsHelper.Click(deleteStudentButtonCSSSelector, SelectorType.CssSelector);
+            // Ponowne zlokalizowanie przycisku usuwania przed kliknięciem
+            ReLocateDeleteButtonAndClick(firstName, lastName);
+
             assertsHelper.WaitForAlert();
             assertsHelper.AcceptAlert();
 
-            Assert.That(assertsHelper.AreTextsUndisplayedUnderElement(studentsTableId, new List<string>() { firstName, lastName, age }), Is.True, $"Student is deleted.");
+            // Ponowne zlokalizowanie elementu i oczekiwanie na jego załadowanie
+            Assert.That(() => assertsHelper.AreTextsUndisplayedUnderElement(studentsTableId, new List<string>() { firstName, lastName, age }), Is.True.After(10).Seconds.PollEvery(1), $"Student is deleted.");
+        }
+
+        private void ReLocateDeleteButtonAndClick(string firstName, string lastName)
+        {
+            var rows = driver.FindElements(By.CssSelector("#students-table tbody tr"));
+            foreach (var row in rows)
+            {
+                if (row.Text.Contains(firstName) && row.Text.Contains(lastName))
+                {
+                    var deleteButton = row.FindElement(By.CssSelector(deleteStudentButtonCSSSelector));
+                    deleteButton.Click();
+                    break;
+                }
+            }
         }
 
     }
