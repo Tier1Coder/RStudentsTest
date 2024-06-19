@@ -6,9 +6,9 @@
         string studentsListTitleId = "students-list-title";
         string newStudentButtonId = "new-student-button";
         string studentsTableId = "students-table";
-        string createStudentFirstNameId = "first-name";
-        string createStudentLastNameId = "last-name";
-        string createStudentAgeId = "age";
+        string createStudentFirstNameId = "FirstName";
+        string createStudentLastNameId = "LastName";
+        string createStudentAgeId = "Age";
         string createStudentSubmitButtonId = "submit-button";
         string deleteStudentButtonCSSSelector = "a[id^='delete-student-']";
 

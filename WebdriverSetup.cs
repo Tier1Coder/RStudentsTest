@@ -20,14 +20,14 @@ namespace RStudents.Tests
                 Console.WriteLine("Starting GeckoDriver...");
 
                 // Ścieżka do GeckoDrivera
-                var service = FirefoxDriverService.CreateDefaultService(@"C:\Users\akasi\source\repos\RStudentsTest\Drivers\geckodriver-v0.34.0-win32\geckodriver.exe");
+                //var service = FirefoxDriverService.CreateDefaultService(@"C:\Users\akasi\source\repos\RStudentsTest\Drivers\geckodriver-v0.34.0-win32\geckodriver.exe");
 
                 // Opcje Firefoxa
-                var options = new FirefoxOptions();
-                options.BrowserExecutableLocation = @"C:\Program Files\Mozilla Firefox\firefox.exe"; // Podaj pełną ścieżkę do firefox.exe
+                // var options = new FirefoxOptions();
 
                 // Uruchomienie GeckoDrivera
-                driver = new FirefoxDriver(service, options);
+                // driver = new FirefoxDriver(options);
+                driver = new FirefoxDriver();
                 driver.Manage().Window.Maximize();
                 wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
                 navigationHelper = new NavigationHelper(driver, wait);

@@ -68,7 +68,7 @@ namespace RStudents.Tests
             try
             {
                 var container = _driver.FindElement(By.Id(containerId));
-                var elements = container.FindElements(By.XPath(".//*")); 
+                var elements = container.FindElements(By.XPath(".//*"));
                 foreach (var element in elements)
                 {
                     if (element.Text.Contains(text))
@@ -89,7 +89,7 @@ namespace RStudents.Tests
             try
             {
                 var container = _driver.FindElement(By.Id(containerId));
-                var elements = container.FindElements(By.XPath(".//*")); 
+                var elements = container.FindElements(By.XPath(".//*"));
                 foreach (var text in texts)
                 {
                     bool textFound = false;
@@ -103,10 +103,10 @@ namespace RStudents.Tests
                     }
                     if (!textFound)
                     {
-                        return false; 
+                        return false;
                     }
                 }
-                return true; 
+                return true;
             }
             catch (NoSuchElementException)
             {
