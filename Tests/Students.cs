@@ -48,16 +48,12 @@ namespace RStudents.Tests
             assertsHelper.SendKeys(createStudentAgeId, age);
             assertsHelper.Click(createStudentSubmitButtonId, SelectorType.Id);
 
-            // Ponowne zlokalizowanie elementu i oczekiwanie na jego załadowanie
             Assert.That(() => assertsHelper.AreTextsDisplayedUnderElement(studentsTableId, new List<string>() { firstName, lastName, age }), Is.True.After(10).Seconds.PollEvery(1), $"Student is added.");
 
-            // Ponowne zlokalizowanie przycisku usuwania przed kliknięciem
             ReLocateDeleteButtonAndClick(firstName, lastName);
 
             assertsHelper.WaitForAlert();
             assertsHelper.AcceptAlert();
-
-            // Ponowne zlokalizowanie elementu i oczekiwanie na jego załadowanie
             Assert.That(() => assertsHelper.AreTextsUndisplayedUnderElement(studentsTableId, new List<string>() { firstName, lastName, age }), Is.True.After(10).Seconds.PollEvery(1), $"Student is deleted.");
         }
 
