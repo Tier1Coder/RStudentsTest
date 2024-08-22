@@ -126,11 +126,11 @@ namespace RStudents.Tests
                     {
                         if (element.Text.Contains(text))
                         {
-                            return false; // Jeśli znajdziemy którykolwiek z tekstów, zwróć false
+                            return false;
                         }
                     }
                 }
-                return true; // Żaden z tekstów nie został znaleziony
+                return true; 
             }
             catch (NoSuchElementException)
             {
